@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#
 MAX_GEN = 50
 TAM_POP = 100
 TAM_CROM = 2
