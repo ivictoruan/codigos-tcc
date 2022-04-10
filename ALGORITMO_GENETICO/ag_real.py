@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 #
 MAX_GEN = 50
@@ -11,8 +11,11 @@ TX_MUT = 0.01
 LI = -32.768
 LS = 32.768
 
-def GeraPopulacao(inf,sup):
-    return np.random.uniform(inf,sup, size=(TAM_POP, TAM_CROM))
+
+def GeraPopulacao(inf, sup):
+    # np.random.uniform(inf, sup, size=(TAM_POP, TAM_CROM))
+    array_pop = np.around(np.random.uniform(inf,sup,size=(TAM_POP,TAM_CROM)),decimals=2)
+    return array_pop
 
 def Aptidao(cromossomo):
     aux = -20*np.exp(-0.2*np.sqrt(0.5*(cromossomo[0]**2+cromossomo[1]**2))) - np.exp(0.5*(np.cos(2*np.pi*cromossomo[0])+np.cos(2*np.pi*cromossomo[1]))) + 20+ np.exp(1)
@@ -32,15 +35,17 @@ def Cruzamento(pai,mae):
 
 def Mutacao(cromossomo):
     aux = cromossomo + np.random.normal(size=2)
-    return np.clip(aux,LI,LS)
+    return np.clip(aux, LI, LS)
 
-pop = GeraPopulacao(LI,LS)
+pop = GeraPopulacao(LI, LS)
 aptidoes = CalculaAptidoes(pop)
+print(pop)
 
-medias = []
+'''medias = []
 melhores = []
 
 for g in range(MAX_GEN):
+https://meet.google.com/cqv-jfrn-uft
     
     nova_pop = []
     for c in range(TAM_POP):
@@ -70,3 +75,4 @@ for g in range(MAX_GEN):
 index_solucao = np.argmax(aptidoes)
 
 print ("Resposta final: " + str(pop[index_solucao]))
+'''
